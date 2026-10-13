@@ -4,6 +4,6 @@ namespace Cafeteria\Excepciones;
 
 use DomainException;
 
-class PedidoInvalidoException extends DomainException {
+class PedidoInvalidoException extends DomainException{
     
 }
