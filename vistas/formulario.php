@@ -7,6 +7,54 @@
     <title>Cafeteria - Pedido</title>
 </head>
 
+<style>
+    body {
+        background: linear-gradient(to right, #6d4968, #472843);
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .container {
+        box-sizing: border-box;
+        padding: 2px;
+    }
+
+    .container h1 {
+        font-size: 50px;
+        margin: 10px;
+        color: #c4c1c3;
+    }
+
+    .form-group {
+        color: #c4c1c3;
+        padding: 15px;
+    }
+
+    .boton-submit {
+        margin-left: 15px;
+        font-size: 18px;
+        color: #c4c1c3;
+        /* Hereda el color de texto claro de tu diseño */
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid #c4c1c3;
+        /* Línea inferior del mismo tono que tus textos */
+        padding: 5px 10px;
+        /* Da espacio interno para que no se sienta apretado */
+        cursor: pointer;
+        /* Cambia el cursor a una manita al pasar por encima */
+        transition: all 0.3s ease;
+    }
+
+    .boton-submit:hover {
+        color: #ffffff;
+        /* Hace el texto completamente blanco */
+        border-bottom-color: #ffffff;
+        /* Cambia la línea inferior a blanco */
+        transform: translateY(-2px);
+        /* Eleva sutilmente el botón */
+    }
+</style>
+
 <body>
     <div class="container">
         <h1>Registrar Pedido</h1>
@@ -26,7 +74,7 @@
             </div>
             <div class="form-group">
                 <label for="producto">Nombre de producto: </label>
-                <input type="text" id="producto" name="producto" value="<?= htmlspecialchars($dato['producto'] ?? '') ?>" required>          
+                <input type="text" id="producto" name="producto" value="<?= htmlspecialchars($dato['producto'] ?? '') ?>" required>
             </div>
             <div class="form-group">
                 <label for="precioBase">Precio base del producto: $</label>
@@ -37,15 +85,17 @@
                 <input type="number" min="1" max="20" id="cantidad" name="cantidad" value="<?= htmlspecialchars($dato['cantidad'] ?? '') ?>" required>
             </div>
             <div class="form-group">
-                <label for="tamano">Tamano de los productos (solo para bebidas):  </label>
+                <label for="tamano">Tamano de los productos (solo para bebidas): </label>
                 <select name="tamano" id="tamano">
-                    <option value="">Seleccione Tamaño</option>
-                    <?php foreach (\Cafeteria\Enums\Tamano::cases() as $t): ?>
-                        <option value="<?= $t->value ?>" <?= (isset($dato['tamano']) && $dato['tamano'] === $t->value) ? 'selected' : '' ?>><?= $t->name ?> (<?= $t->value ?>)</option>
+                    <option value="">Ingrese el tamano</option>
+                    <?php foreach(\Cafeteria\Enums\Tamano::cases() as $t): ?>
+                        <option value="<?= $t->value ?>" <?= (isset($dato['tamano']) && $dato['tamano'] === $t->value) ? 'selected' : '' ?>>
+                            <?= $t->name ?> (<?= $t->value ?>)
+                        </option>
                     <?php endforeach; ?>
                 </select>
-            </div> 
-            <button type="submit">Guardar pedido</button>
+            </div>
+            <button class="boton-submit" type="submit">Guardar pedido</button>
         </form>
     </div>
 </body>
